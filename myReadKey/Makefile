@@ -1,7 +1,7 @@
 DIR_NAME = myReadKey
 
-LIB_NAME = $(DIR_NAME).a
-LIB_PATH = $(LIB_NAME)
+LIB_NAME = lib$(DIR_NAME)
+LIB_PATH = $(LIB_NAME).a
 
 SRC = $(wildcard *.c)
 OBJ = $(patsubst %.c, %.o, $(SRC))
@@ -11,7 +11,7 @@ DEPS = $(OBJ:.o=.d)
 .PHONY: all 
 # all: $(LIB_PATH)
 all: 
-	@echo [INFO] $(DIR_NAME) is not implemented
+	@echo [INFO] $(LIB_NAME) is not implemented
 
 -include $(DEPS)
 

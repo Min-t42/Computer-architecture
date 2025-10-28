@@ -1,7 +1,6 @@
-
 DIR_NAME = simpleassembler
 
-APP_NAME = $(DIR_NAME).a
+APP_NAME = $(DIR_NAME)
 APP_PATH = $(APP_NAME)
 
 SRC = $(wildcard *.c)
@@ -12,12 +11,12 @@ DEPS = $(OBJ:.o=.d)
 .PHONY: all 
 # all: $(APP_PATH)
 all: 
-	@echo [INFO] $(DIR_NAME) is not implemented
+	@echo [INFO] $(APP_NAME) is not implemented
 
 -include $(DEPS)
 
 $(APP_PATH): $(OBJ)
-	ar rcs $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(DEPSFLAGS) -c -o $@ $<	
