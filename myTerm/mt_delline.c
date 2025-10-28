@@ -1,8 +1,10 @@
+#include <stdio.h>
 #include <unistd.h>
 
 int
-mt_clrscr (void)
+mt_delline (void)
 {
-  char buf[] = "\e[H\e[J";
+  fflush (stdin);
+  char buf[] = "\e[M";
   return write (STDOUT_FILENO, buf, sizeof (buf)) == -1 ? -1 : 0;
 }

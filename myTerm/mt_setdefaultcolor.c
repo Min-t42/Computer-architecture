@@ -1,8 +1,8 @@
 #include <unistd.h>
 
 int
-mt_clrscr (void)
+mt_setdefaultcolor (void)
 {
-  char buf[] = "\e[H\e[J";
+  char buf[] = "\e[0m";
   return write (STDOUT_FILENO, buf, sizeof (buf)) == -1 ? -1 : 0;
 }
