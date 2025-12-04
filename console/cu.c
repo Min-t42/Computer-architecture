@@ -27,9 +27,9 @@ READ (int address)
   int value;
   printTerm (address, 1);
   nanosleep (&ts, &ts);
-  mt_gotoXY (24, 69);
+  mt_gotoXY (24, 73);
   mt_print ("     ");
-  mt_gotoXY (24, 69);
+  mt_gotoXY (24, 73);
   nanosleep (&ts, &ts);
 
   sc_regSet (SC_IGNORE_CLOCK_PULSE, 1);
@@ -92,6 +92,17 @@ JZ (int address)
   sc_accumulatorGet (&value);
   if (value == 0)
     return sc_icounterSet (address);
+  return -1;
+}
+
+int
+JNS (int address)
+{
+  int value;
+  sc_accumulatorGet (&value);
+  if (value >> 14 == 0 && value != 0)
+    return sc_icounterSet (address);
+
   return -1;
 }
 
@@ -163,6 +174,9 @@ CU (void)
           break;
         case 0x2B: // HALT
           HALT (operand);
+          break;
+        case 0x37: // JNS
+          jump_result = JNS (operand);
           break;
         default:
           break;
